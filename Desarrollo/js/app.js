@@ -2,6 +2,9 @@ let numeroAdivina;
 let numerosIngresados = [];
 let formulario = document.getElementById('formulario');
 formulario.addEventListener('submit', comparaNumeros);
+
+let botonNumero = document.getElementById('btNumero');
+
 function cargaApp()
 {
     numeroAdivina = Math.floor(Math.random() * (100 - 1) + 1);
@@ -17,15 +20,23 @@ function comparaNumeros(e)
     formulario.reset();
     if(numerosIngresados.includes(numeroIngresado))
     {
-        alert('El numero que ingreso ya lo habia ingresado anterormente.');
-    }else
+        alert('El número que ingreso ya lo habia ingresado anterormente. Revise la tabla >:(');
+    }else if(numeroIngresado > 100 || numeroIngresado <= 0)
+    {
+        alert('El número que ingreso es menor a 0 o mayor que 100. Por favor lea las indicaciones que para algo estan >:(')
+    }else if(numerosIngresados.length < 10)
     {
         numerosIngresados.push(numeroIngresado);
         agregATabla(numeroIngresado);
         if(numeroAdivina === numeroIngresado)
         {
-            alert('Usted acerto al numero aleatorio.');
+            alert('Usted acerto al número aleatorio.');
+            modificarBoton();
         }
+    }else
+    {
+        alert('Mejor suerte la proxima. Usted a ocupado todos sus intentos. Recargue la pagina y vuelva a intentarlo');
+        modificarBoton();
     }
 }
 
@@ -53,4 +64,10 @@ function agregATabla(numeroIngresado)
     nuevaLinea.appendChild(numero);
     nuevaLinea.appendChild(estado);
     contenedor.appendChild(nuevaLinea);
+}
+
+function modificarBoton()
+{
+    console.log('Entrando al metodo para modificar el boton');
+    botonNumero.className = 'btn btn-success disabled';
 }
