@@ -14,7 +14,6 @@ function cargaApp()
 function comparaNumeros(e)
 {
     e.preventDefault();
-    console.log('A comparar los numeros');
     let dato = document.getElementById('ingresaNum');
     let numeroIngresado = parseInt(dato.value);
     formulario.reset();
@@ -68,6 +67,5 @@ function agregATabla(numeroIngresado)
 
 function modificarBoton()
 {
-    console.log('Entrando al metodo para modificar el boton');
     botonNumero.className = 'btn btn-success disabled';
 }
